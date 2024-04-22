@@ -1,13 +1,17 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
-#home {
+#home, .question-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/jspic.jpeg");
   background-size: cover;
   height: 1100px;
 }
 .a-top-row {
   padding: 200px 0 100px 0;
+}
+
+.a-top-row-2 {
+  padding: 300px 0 100px 0;
 }
 
 .a-home-text {
