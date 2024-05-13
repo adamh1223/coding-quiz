@@ -7,11 +7,7 @@ body {
   height: 1100px;
 }
 .a-top-row {
-  padding: 200px 0 100px 0;
-}
-
-.a-top-row-2 {
-  padding: 300px 0 100px 0;
+  padding: 150px 0 100px 0;
 }
 
 .a-home-text {
@@ -21,4 +17,8 @@ body {
 
 .logos {
   height: 200px;
+}
+
+.hide {
+  display: none;
 }
