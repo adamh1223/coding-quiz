@@ -4,7 +4,7 @@ body {
 #home, .question-1 {
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/jspic.jpeg");
   background-size: cover;
-  height: 1100px;
+  height: 1300px;
 }
 .a-top-row {
   padding: 150px 0 100px 0;
@@ -21,4 +21,8 @@ body {
 
 .hide {
   display: none;
+}
+
+#feedback {
+  font-size: 40px;
 }
