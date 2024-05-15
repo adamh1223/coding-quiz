@@ -7,6 +7,11 @@ const begin = document.getElementById('begin').addEventListener('click', () => {
   renderQuestion();
 });
 
+const highScores = document.getElementById('high-scores')
+const questionContainer = document.getElementById('question-container')
+let score = 0;
+let attemptNumber = 0;
+
 var questions = [{
   question: 'Inside which HTML element do you link a JavaScript file?',
   answers: [
@@ -16,7 +21,7 @@ var questions = [{
     '<href>'
   ],
   correctAnswer: 0
-}, {
+ }, {
   question: 'In which language do you stylize the visible elements on a webpage?',
   answers: [
     'JavaScript',
@@ -86,16 +91,18 @@ let activeQuestion = 0;
 let selectedAnswer = null;
 let feedback = '';
 let timer;
-let timeRemaining = 90;
+let timeRemaining = 10;
+let questionCount = 0;
 
 const renderQuestion = () => {
+  const currentScore = document.getElementById('current-score')
   const questionElement = document.getElementById('question-1')
   questionElement.innerText = questions[activeQuestion].question;
   let answerElement1 = document.getElementById('answer-1')
   let answerElement2 = document.getElementById('answer-2')
   let answerElement3 = document.getElementById('answer-3')
   let answerElement4 = document.getElementById('answer-4')
-
+  currentScore.innerText = `${score} / ${questionCount}`
   answerElement1.innerText = questions[activeQuestion].answers[0];
   answerElement2.innerText = questions[activeQuestion].answers[1];
   answerElement3.innerText = questions[activeQuestion].answers[2];
@@ -133,8 +140,11 @@ const selectAnswer = (answerIndex) => {
 
   if (selectedAnswer === questions[activeQuestion].correctAnswer) {
     feedback = 'Correct!';
+    score += 1;
+    questionCount += 1;
   } else {
     feedback = 'Incorrect';
+    questionCount += 1;
   }
 
   // Highlight selected answer
@@ -184,7 +194,16 @@ const startTimer = () => {
 const endQuiz = () => {
   alert('Time is up! The quiz has ended.');
   // You can add logic to display the score or final results here
+  showHighScores();
+  attemptNumber++;
+  saveScoresToLS();
+  document.location.href = 'highScores.html'
 };
+
+const showHighScores = () => {
+  highScores.classList.remove('hide');
+  questionContainer.classList.add('hide');
+}
 
 document.getElementById('next').addEventListener('click', () => {
   const feedbackElement = document.getElementById('feedback');
@@ -203,10 +222,22 @@ document.getElementById('next').addEventListener('click', () => {
       } else {
         // Logic for quiz completion, e.g., displaying the score, can be added here
         alert('Quiz completed!');
+        attemptNumber++;
+        showHighScores();
+        clearInterval(timer);
+        saveScoresToLS();
+        document.location.href = 'highScores.html'
       }
     }, 2000); // Display feedback for 2 seconds before moving to the next question
   }
 });
+
+const saveScoresToLS = () => {
+  localStorage.setItem(`score ${attemptNumber}`, score)
+  localStorage.setItem('attemptNumber', attemptNumber)
+  localStorage.setItem('questionCount', questionCount)
+}
+
 
 // Initial rendering of the first question
 renderQuestion();
