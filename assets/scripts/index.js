@@ -238,6 +238,65 @@ const saveScoresToLS = () => {
   localStorage.setItem('questionCount', questionCount)
 }
 
+// Boolean true or false
+// Number
+// String - "" , '', ``
+// Array - []  == useful for storing many similar things
+//Obnject - {key: value} = useful for storing multiple information about one thing
+//when I'm working with local Storage I need to ask myself one thing - WIll I have multiple of this or no?
 
+//when I want to store many what Javascript Data TYpe is best for that?
+// Storage - [{
+//   initials: "AH",
+//   attempted: Number,
+//   correct: Number
+// }]
+
+
+//My website when I create it first, does local storage exist?
+var myStorage = localStorage.getItem("hardcoded-key")
+console.log("My Storage: ", myStorage)
+
+//what should I first do if I know that my localStorage doesn't exist.??
+function initializeStorage(){
+  console.log("INITIALIZE STORAGE")
+  var savedScores = localStorage.getItem("saved-scores")
+  if(savedScores !== null){
+      return;
+  } 
+  localStorage.setItem("saved-scores", JSON.stringify([]));
+}
+
+function saveToStorage(newScore){
+  var savedScores = JSON.parse(localStorage.getItem("saved-scores"))
+  savedScores.push(newScore);
+  localStorage.setItem("saved-scores", JSON.stringify(savedScores));
+}
+
+
+
+formEl = document.getElementById("highscore-form")
+console.log(formEl);
+formEl.addEventListener("submit", handleFormSubmission)
+
+function handleFormSubmission(event){
+  event.preventDefault();
+  console.log("FORM SUBMITTED!!")
+  //validation of inputs
+  var initialsInputEl = document.getElementById("initials-input")
+  console.log("initials el : ", initialsInputEl);
+  var submittedInitials = initialsInputEl.value.trim();
+  //if its not valid, let the user know the error and return
+  if(submittedInitials.length > 3 || submittedInitials === ""){
+    //
+    return
+  }
+  var scoreObj = {
+    initials: submittedInitials,
+    score:score
+  }
+  saveToStorage(scoreObj)
+}
 // Initial rendering of the first question
 renderQuestion();
+initializeStorage();
