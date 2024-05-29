@@ -11,7 +11,7 @@
   <header>
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
-        <a class="navbar-brand" href="#">Coding Quiz Challenge</a>
+        <a class="navbar-brand" href="index.html">Coding Quiz Challenge</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -36,9 +36,15 @@
       <div class="col-lg text-light px-3">
         <div class="row-lg text-center a-top-row-2">
         </div>
-        <div class="container a-home-text" id="high-scores">
-          <h1>High Scores</h1>
+        <div class="container a-home-text">
+          <h1 class="py-3 text-center">High Scores</h1>
+          <form id="highscore-form" class="text-center">
+            <label for="initials"></label>
+            <input type="text" placeholder="Please enter initials" name="initials" id="initials-input">
+            <button class="btn btn-primary mx-2" type="submit" id="submit-score">Submit</button>
+          </form>
           <p id="render-scores"></p>
+          <div id="high-scores"></div>
         </div>
       </div>
     </section>
