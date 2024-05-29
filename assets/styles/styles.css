@@ -26,3 +26,17 @@ body {
 #feedback {
   font-size: 40px;
 }
+
+ol {
+  font-size: 30px;
+  padding: 0 0 30px 70px;
+}
+
+li {
+  color: rgb(17, 200, 17);
+  font-weight: 700;
+}
+
+li::marker {
+  color: white;
+}
