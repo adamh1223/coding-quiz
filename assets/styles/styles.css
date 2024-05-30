@@ -1,7 +1,11 @@
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Style the background */
 #home, .question-1 {
+  /* Gradient so the background doesn't distract */
   background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/jspic.jpeg");
   background-size: cover;
   height: 1300px;
@@ -9,7 +13,7 @@ body {
 .a-top-row {
   padding: 150px 0 100px 0;
 }
-
+/*Add a clear background for the main text, curved borders*/
 .a-home-text {
   background-color: rgba(0, 0, 0, 0.8);
   border-radius: 20px;
@@ -23,20 +27,22 @@ body {
   display: none;
 }
 
+/*Style feedback*/
 #feedback {
   font-size: 40px;
 }
 
+/* Style the ordered list that we generate in javascript*/
 ol {
   font-size: 30px;
   padding: 0 0 30px 70px;
 }
-
+/* Style the list items */
 li {
   color: rgb(17, 200, 17);
   font-weight: 700;
 }
-
+/*Style the marker (number) of each list item*/
 li::marker {
   color: white;
 }

@@ -1,3 +1,4 @@
+//Begin quiz
 const begin = document.getElementById('begin').addEventListener('click', () => {
   var section = document.querySelector('.a-home-text');
   var questionEl = document.getElementById('questionContent');
@@ -9,9 +10,11 @@ const begin = document.getElementById('begin').addEventListener('click', () => {
 
 const highScores = document.getElementById('high-scores')
 const questionContainer = document.getElementById('question-container')
+//Start with score of 0
 let score = 0;
 const viewHighScores = document.getElementById('view-high-scores')
 
+//Questions are stored as an array of objects
 var questions = [{
   question: 'Inside which HTML element do you link a JavaScript file?',
   answers: [
@@ -20,6 +23,7 @@ var questions = [{
     '<scripting>',
     '<href>'
   ],
+  //Correct answer index
   correctAnswer: 0
  }, {
   question: 'In which language do you stylize the visible elements on a webpage?',
@@ -86,7 +90,13 @@ var questions = [{
   correctAnswer: 0
 }
 ]
-
+//activeQuestion starts at 0
+//selectedAnswer doesn't have a value by default (until user makes a selection)
+//Feedback is blank by defualt (until user makes a selection)
+//create the timer
+//90 seconds remaining
+//questionCount keeps track of how many questions have been asked at any point
+//attemptNumber keeps track of how many quiz attempts have been made
 let activeQuestion = 0;
 let selectedAnswer = null;
 let feedback = '';
@@ -95,6 +105,7 @@ let timeRemaining = 90;
 let questionCount = 0;
 let attemptNumber = 0;
 
+//function to render each question
 const renderQuestion = () => {
   const currentScore = document.getElementById('current-score')
   const questionElement = document.getElementById('question-1')
@@ -162,6 +173,7 @@ const selectAnswer = (answerIndex) => {
   answerElement3.classList.remove('active');
   answerElement4.classList.remove('active');
 
+  //In any case, highlight the selected answer
   switch (answerIndex) {
     case 0:
       answerElement1.classList.add('active', 'btn-light');
@@ -181,30 +193,38 @@ const selectAnswer = (answerIndex) => {
 const startTimer = () => {
   const timerElement = document.getElementById('timer');
   timerElement.classList.add('text-light', 'fs-4', 'text-center', 'my-3');
-
+  //Display time remaining
   timerElement.innerText = `Time Remaining: ${timeRemaining}s`;
 
   timer = setInterval(() => {
+    //Timer counts down
     timeRemaining--;
     timerElement.innerText = `Time Remaining: ${timeRemaining}s`;
 
     if (timeRemaining <= 0) {
+      //Clear timer and end quiz if time runs out
       clearInterval(timer);
       endQuiz();
     }
+    //1000 milliseconds = timer unit (s)
   }, 1000);
 };
 
 const endQuiz = () => {
+  //Popup when quiz ends
   alert('Time is up! The quiz has ended.');
-  // You can add logic to display the score or final results here
+  //show high scores
   showHighScores();
+  //increase the attempt number
   attemptNumber++;
+  //Save scores to local storage
   saveScoresToLS();
+  //Save score in URL
   document.location.href = 'highScores.html?score=' + score; 
 };
 
 const showHighScores = () => {
+  //Reveal highscores, hide quiz
   highScores.classList.remove('hide');
   questionContainer.classList.add('hide');
 }
@@ -212,19 +232,24 @@ const showHighScores = () => {
 document.getElementById('next').addEventListener('click', () => {
   const feedbackElement = document.getElementById('feedback');
   if (selectedAnswer === null) {
+    //Make sure user selects an answer for each question
     alert('Please select an answer before proceeding.');
   } else {
+    //Provide correct/incorrect feedback
     feedbackElement.innerText = feedback;
     feedbackElement.classList.remove('hide', 'text-success', 'text-danger');
-    
+    //If correct, give it bootstrap class that makes it green, if not, make it red
     feedbackElement.classList.add(feedback === 'Correct!' ? 'text-success' : 'text-danger');
 
     setTimeout(() => {
+      //Set timer for feedback
+      //Move on to next question in the array
       activeQuestion++;
       if (activeQuestion < questions.length) {
+        //Render next question
         renderQuestion();
       } else {
-        // Logic for quiz completion, e.g., displaying the score, can be added here
+        // Alert the user that the quiz was completed, increase attempt number, show highscores, clear timer, save to local storage, get score in URL
         alert('Quiz completed!');
         attemptNumber++;
         showHighScores();
@@ -236,30 +261,31 @@ document.getElementById('next').addEventListener('click', () => {
   }
 });
 
+//Save to local storage
 const saveScoresToLS = () => {
   localStorage.setItem(`score ${attemptNumber}`, score)
   localStorage.setItem('attemptNumber', attemptNumber)
   localStorage.setItem('questionCount', questionCount)
 }
 
-//what should I first do if I know that my localStorage doesn't exist.??
+//If local storage doesn't exist yet
 function initializeStorage(){
-  console.log("INITIALIZE STORAGE")
   var savedScores = localStorage.getItem("saved-scores")
   if(savedScores !== null){
       return;
   } 
+  //If savedScores is null, create an empty array in local storage
   localStorage.setItem("saved-scores", JSON.stringify([]));
 }
 
 // Initial rendering of the first question
 renderQuestion();
-//initializeStorage();
 
+//navigate to high scores, scores show up
 function goToHighScores(evt) {
   evt.preventDefault()
-  console.log('hello')
   document.location.href = 'highScores.html?showscores=' + true;
 }
 
+//on click of the view high scores button, take us to high scores page, but only show the scores
 viewHighScores.addEventListener('click', goToHighScores)

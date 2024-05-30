@@ -3,12 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--Import Bootstrap-->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="./assets/styles/styles.css">
   <title>Coding Quiz</title>
 </head>
 <body>
   <header>
+    <!--Same navbar as index.html-->
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
       <div class="container-fluid">
         <a class="navbar-brand" href="index.html">Coding Quiz Challenge</a>
@@ -31,18 +33,19 @@
         <img src="./assets/images/logos9.png" alt="" class="logos">
       </div>
     </section>
-
     <section id="questionContent">
       <div class="col-lg text-light px-3">
         <div class="row-lg text-center a-top-row-2">
         </div>
         <div class="container a-home-text">
           <h1 class="py-3 text-center">High Scores</h1>
+          <!--Form for inputting high scores-->
           <form id="highscore-form" class="text-center">
             <label for="initials"></label>
             <input type="text" placeholder="Please enter initials" name="initials" id="initials-input">
             <button class="btn btn-primary mx-2" type="submit" id="submit-score">Submit</button>
           </form>
+          <!--Where we render the scores-->
           <p id="render-scores"></p>
           <div id="high-scores"></div>
         </div>
