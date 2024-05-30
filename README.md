@@ -18,8 +18,8 @@ I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
 SO THAT I can gauge my progress compared to my peers
 
 
-![markdown](./Assets/markdown-1.png)
-![markdown](./Assets/markdown-2.png)
+![markdown](./assets/images/markdown1.png)
+![markdown](./assets/images/markdown2.png)
 
 
 ## Acceptance Criteria
