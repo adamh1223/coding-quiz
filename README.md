@@ -48,9 +48,9 @@ Built with:
 
 
 ## Link to Application
-https://adamh1223.github.io/day-planner/
+https://adamh1223.github.io/coding-quiz/
 
 ## Link to GitHub Repository
-https://github.com/adamh1223/day-planner
+https://github.com/adamh1223/coding-quiz
 
 ### <p align="center">[Back to Top](#day-planner)</p> 
